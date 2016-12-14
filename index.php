@@ -88,7 +88,7 @@ include "include/connection.php";
     	
         <div class="col-md-12" align="center">&nbsp;</div>
     
-     	<div class="col-md-12" align="left"><p>Not Registered yet?&nbsp;<a href="profile/register.php">Sign Up</a></p></div>
+     	<div class="col-md-12" align="left"><p>Not Registered yet?&nbsp;<a href="register.php">Sign Up</a></p></div>
 
 </form>
 	</div>
