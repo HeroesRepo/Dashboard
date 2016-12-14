@@ -157,105 +157,101 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
-         
+          <?php
+             include "include/connection.php";    
+              $query = mysqli_query($con, "select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'");
+              echo "<br />Total Number of Records:".mysqli_num_rows($query);
+              if(mysqli_num_rows($query)>0)
+                    {
+          ?>
           <div class="box">
             <div class="box-header">
+            <div id="no-more-tables">
+                <table class="col-md-12 table table-hover cf" id="example2">
+                    <thead class="cf">
+                        <tr>
+                            <th>Component/Blood Group</th>
+                            <th>A+ve</th>
+                            <th>O+ve</th>
+                            <th>B+ve</th>
+                            <th>AB+ve</th>
+                            <th>A-ve</th>
+                            <th>O-ve</th>
+                            <th>B-ve</th>
+                            <th>AB-ve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+              <?php
+                  $result=mysqli_fetch_assoc($query);
+                  extract($result);
+                ?>
+                            <tr>
+                              <td>Whole Blood</td>
+                              <td class="center"><?php echo $wb_a_pos?></td>
+                              <td class="center"><?php echo $wb_o_pos?></td>
+                              <td class="center"><?php echo $wb_b_pos?></td>
+                              <td class="center"><?php echo $wb_ab_pos?></td>
+                              <td class="center"><?php echo $wb_a_neg?></td>
+                              <td class="center"><?php echo $wb_o_neg?></td>
+                              <td class="center"><?php echo $wb_b_neg?></td>               
+                              <td class="center"><?php echo $wb_ab_neg?></td>
+                            </tr>
+
+                             <tr>
+                              <td>PCV</td>
+                              <td class="center"><?php echo $pcv_a_pos?></td>
+                              <td class="center"><?php echo $pcv_o_pos?></td>
+                              <td class="center"><?php echo $pcv_b_pos?></td>
+                              <td class="center"><?php echo $pcv_ab_pos?></td>
+                              <td class="center"><?php echo $pcv_a_neg?></td>
+                              <td class="center"><?php echo $pcv_o_neg?></td>
+                              <td class="center"><?php echo $pcv_b_neg?></td>               
+                              <td class="center"><?php echo $pcv_ab_neg?></td>              
+                              
+                            </tr>
+
+
+                             <tr>
+                              <td>RDP</td>
+                              <td class="center"><?php echo $rdp_a_pos?></td>
+                              <td class="center"><?php echo $rdp_o_pos?></td>
+                              <td class="center"><?php echo $rdp_b_pos?></td>
+                              <td class="center"><?php echo $rdp_ab_pos?></td>
+                              <td class="center"><?php echo $rdp_a_neg?></td>
+                              <td class="center"><?php echo $rdp_o_neg?></td>
+                              <td class="center"><?php echo $rdp_b_neg?></td>               
+                              <td class="center"><?php echo $rdp_ab_neg?></td>           
+                              
+                            </tr>
+
+
+                             <tr>
+                              <td>FFP</td>
+                            <td class="center"><?php echo $ffp_a_pos?></td>
+                              <td class="center"><?php echo $ffp_o_pos?></td>
+                              <td class="center"><?php echo $ffp_b_pos?></td>
+                              <td class="center"><?php echo $ffp_ab_pos?></td>
+                              <td class="center"><?php echo $ffp_a_neg?></td>
+                              <td class="center"><?php echo $ffp_o_neg?></td>
+                              <td class="center"><?php echo $ffp_b_neg?></td>               
+                              <td class="center"><?php echo $ffp_ab_neg?></td>               
+                              
+                            </tr>
+                      </tbody>
+                </table>
+                  <?php
+                  }
+              ?> 
+            </div>
+
               <!-- <h3 class="box-title">Current Stock</h3> -->
             </div>
             <!-- /.box-header -->
             
-               <?php
-                  include "include/connection.php";    
-                  $query = mysqli_query($con, "select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'");
-                    echo "<br />Total Number of Records:".mysqli_num_rows($query);
-                    if(mysqli_num_rows($query)>0)
-                    {
-                      ?>
-                                 
+                       
             
-            
-            <div class="box-body">
-              <table id="example2" class="responsive table table-bordered table-striped">
-                <thead>
-                <tr>
-                   <th>Component/Blood Group</th>
-                  <th>A+ve</th>
-                  <th>O+ve</th>
-                  <th>B+ve</th>
-                  <th>AB+ve</th>
-                  <th>A-ve</th>
-                  <th>O-ve</th>
-                  <th>B-ve</th>
-                  <th>AB-ve</th>
-              </tr>
-                </thead>
-                <tbody>
-                
-                        <?php
-              
-              $result=mysqli_fetch_assoc($query);
-              extract($result);
-                
-                ?>
-            <tr>
-                <td>Whole Blood</td>
-                <td class="center"><?php echo $wb_a_pos?></td>
-                <td class="center"><?php echo $wb_o_pos?></td>
-                <td class="center"><?php echo $wb_b_pos?></td>
-                <td class="center"><?php echo $wb_ab_pos?></td>
-                <td class="center"><?php echo $wb_a_neg?></td>
-                <td class="center"><?php echo $wb_o_neg?></td>
-                <td class="center"><?php echo $wb_b_neg?></td>               
-                <td class="center"><?php echo $wb_ab_neg?></td>
-              </tr>
-
-               <tr>
-                <td>PCV</td>
-                <td class="center"><?php echo $pcv_a_pos?></td>
-                <td class="center"><?php echo $pcv_o_pos?></td>
-                <td class="center"><?php echo $pcv_b_pos?></td>
-                <td class="center"><?php echo $pcv_ab_pos?></td>
-                <td class="center"><?php echo $pcv_a_neg?></td>
-                <td class="center"><?php echo $pcv_o_neg?></td>
-                <td class="center"><?php echo $pcv_b_neg?></td>               
-                <td class="center"><?php echo $pcv_ab_neg?></td>              
-                
-              </tr>
-
-
-               <tr>
-                <td>RDP</td>
-                <td class="center"><?php echo $rdp_a_pos?></td>
-                <td class="center"><?php echo $rdp_o_pos?></td>
-                <td class="center"><?php echo $rdp_b_pos?></td>
-                <td class="center"><?php echo $rdp_ab_pos?></td>
-                <td class="center"><?php echo $rdp_a_neg?></td>
-                <td class="center"><?php echo $rdp_o_neg?></td>
-                <td class="center"><?php echo $rdp_b_neg?></td>               
-                <td class="center"><?php echo $rdp_ab_neg?></td>           
-                
-              </tr>
-
-
-               <tr>
-                <td>FFP</td>
-              <td class="center"><?php echo $ffp_a_pos?></td>
-                <td class="center"><?php echo $ffp_o_pos?></td>
-                <td class="center"><?php echo $ffp_b_pos?></td>
-                <td class="center"><?php echo $ffp_ab_pos?></td>
-                <td class="center"><?php echo $ffp_a_neg?></td>
-                <td class="center"><?php echo $ffp_o_neg?></td>
-                <td class="center"><?php echo $ffp_b_neg?></td>               
-                <td class="center"><?php echo $ffp_ab_neg?></td>               
-                
-              </tr>
-       
-          </tfoot>
-      </table>
-   <?php
-      }
-    ?>  
-                            
+          
             </div>
             <!-- /.box-body -->
           </div>
