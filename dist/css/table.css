@@ -47,3 +47,13 @@
   */
   #no-more-tables td:before { content: attr(data-title); }
 }
+ #footer {
+    position:fixed;
+    right:0;
+    bottom:0;
+    margin:0;
+    width:10%;
+}
+#footer img {
+    width:100%;
+  }
