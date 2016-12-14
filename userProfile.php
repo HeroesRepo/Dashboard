@@ -60,6 +60,8 @@ if(isset($_POST['update']))
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+   <!-- Table style -->
+   <link rel="stylesheet" href="dist/css/table.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -73,17 +75,7 @@ if(isset($_POST['update']))
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  <style>
-    #footer {
-    position:fixed;
-    right:0;
-    bottom:0;
-    margin:0;
-    width:10%;
-}
-#footer img {width:100%;}
-
-  </style>
+ 
   <SCRIPT language=Javascript>
       <!--
       function isNumberKey(evt)
