@@ -6,7 +6,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
  <!-- Table style -->
-   <link rel="stylesheet" href="dist/css/table.css">
+ 
 <title>Untitled Document</title>
 </head>
 
@@ -104,6 +104,7 @@ while($row=mysqli_fetch_array($result))
 };
 ?>
 </table>
+</div>
 <?php
 
 };
