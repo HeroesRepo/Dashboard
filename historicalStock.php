@@ -128,8 +128,8 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview"><a href="bloodbankProfile.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
         <li><a href="updateStock.php"><i class="fa fa-th-list"></i> <span>Update  Stock</span></a></li>
-        <li><a href="#"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
-        <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+        <li><a href="historicalStock.php"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
+        <li><a href="userProfile.php"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         <li><a href="changePassword.php"><i class="fa fa-save"></i> <span>Change Password</span></a></li>
           <li><a href="logout.php"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>    
       </ul>
@@ -164,7 +164,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
             
                <?php
                   include "include/connection.php";    
-                  $query = mysqli_query($con, "select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'");
+                  $query = mysqli_query($con, "select * from bb_dailystock_hist where bb_regno='".$_SESSION['bb_regno']."'");
                     echo "<br />Total Number of Records:".mysqli_num_rows($query);
                     if(mysqli_num_rows($query)>0)
                     {
@@ -245,9 +245,8 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
                 <td class="center"><?php echo $ffp_o_neg?></td>
                 <td class="center"><?php echo $ffp_b_neg?></td>               
                 <td class="center"><?php echo $ffp_ab_neg?></td>               
-                
               </tr>
-       
+   
           </tfoot>
       </table>
    <?php
@@ -495,8 +494,8 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
-      "paging": false,
-      "lengthChange": false,
+      "paging": true,
+      "lengthChange": true,
       "searching": true,
       "ordering": true,
       "info": true,
