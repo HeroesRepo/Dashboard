@@ -23,7 +23,8 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
-   <!-- Table style -->
+  
+ <!-- Table style -->
    <link rel="stylesheet" href="dist/css/table.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
@@ -150,8 +151,9 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
         <div class="col-xs-12">
          
           <div class="box">
-            <div class="box-header"></div>
+            <div class="box-header">
             <!-- /.box-header -->
+
             <div class="container">
               <div class="row">
                 <div class="col-md-2"></div>
@@ -171,23 +173,26 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
                    </div>
                  </div>
                 <div class="col-md-2"></div>
+
+                
               </div>
             </div>
+
             <br>
-            <div id="table-container"></div>
+  <div id="table-container"></div>          
 <script src="dist/js/jquery.js"></script>
 
 <script>
 $(document).ready(function()
 {
-  var $date1 = $('#date');
+  var $date_new = $('#date');
   
   var $searchButton1 = $('#searchButton');
   
   
 $searchButton1.on('click',function(){
 
-$('#input').val($date1.eq(0).val());
+$('#input').val($date_new.eq(0).val());
 var value=$('#input').val();
 console.log(value);
 $.ajax(
@@ -212,7 +217,7 @@ success:function(data)
  
    </script>  
 
-
+</div>
 
             </div>
             <!-- /.box-body -->
