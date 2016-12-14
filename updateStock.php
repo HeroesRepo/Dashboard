@@ -7,6 +7,134 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
     $res2=mysqli_query($con,$query2);
     $rec=mysqli_fetch_array($res2);
 ?>
+
+<?php
+
+include "include/connection.php";
+if(isset($_POST['submit']))
+{
+extract($_POST);
+
+
+$q=mysqli_query($con,"select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'") or die(mysqli_error($con));
+  if(mysqli_num_rows($q)==1)
+  
+  {
+  $row=mysqli_fetch_array($q);
+      if(isset($_POST['submit']))
+      {
+        extract($_POST);
+  
+        $query1=mysqli_query($con,"insert into bb_dailystock_hist select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'") or die(mysqli_error($con));
+        
+        
+        
+        if($query1)
+        {
+          
+              if(isset($_POST['submit']))
+            {
+              extract($_POST);
+              
+          
+              $query=mysqli_query($con,"update bb_dailystock_curr set
+              bb_regno='".$_SESSION['bb_regno']."',
+              date='$date',
+              wb_a_pos='$wb_a_pos',
+              wb_a_neg='$wb_a_neg',
+              wb_b_pos='$wb_b_pos',
+              wb_b_neg='$wb_b_neg',
+              wb_o_pos='$wb_o_pos',
+              wb_o_neg='$wb_o_neg',
+              wb_ab_pos='$wb_ab_pos',
+              wb_ab_neg='$wb_ab_neg',
+              pcv_a_pos='$pcv_a_pos',
+              pcv_a_neg='$pcv_a_neg',
+              pcv_b_pos='$pcv_b_pos',
+              pcv_b_neg='$pcv_b_neg',
+              pcv_o_pos='$pcv_o_pos',
+              pcv_o_neg='$pcv_o_neg',
+              pcv_ab_pos='$pcv_ab_pos',
+              pcv_ab_neg='$pcv_ab_neg',
+              rdp_a_pos='$rdp_a_pos',
+              rdp_a_neg='$rdp_a_neg',
+              rdp_b_pos='$rdp_b_pos',
+              rdp_b_neg='$rdp_b_neg',
+              rdp_o_pos='$rdp_o_pos',
+              rdp_o_neg='$rdp_o_neg',
+              rdp_ab_pos='$rdp_ab_pos',
+              rdp_ab_neg='$rdp_ab_neg',
+              ffp_a_pos='$ffp_a_pos',
+              ffp_a_neg='$ffp_a_neg',
+              ffp_b_pos='$ffp_b_pos',
+              ffp_b_neg='$ffp_b_neg',
+              ffp_o_pos='$ffp_o_pos',
+              ffp_o_neg='$ffp_o_neg',
+              ffp_ab_pos='$ffp_ab_pos',
+              ffp_ab_neg='$ffp_ab_neg',
+              posting_time=CURRENT_TIMESTAMP 
+              
+              where  bb_regno='".$_SESSION['bb_regno']."' ") or die(mysqli_error($con)); 
+              
+               if($query)
+                          {
+                           echo '<script type="text/javascript">';
+                           echo " alert('Record Updated');";
+                           //echo 'window.location.href = "bloodbankProfile.php";'; 
+                           echo '</script>';
+                  
+                          }
+                         else
+                         {
+                           echo '<script type="text/javascript">';
+                           echo "alert('Eror Occured');";
+                             die(mysqli_error($con));
+                             echo '<script>';
+                             //echo $cQry;
+                             }
+            }
+          }
+          
+          else
+          {
+              echo '<script type="text/javascript">';
+              echo " alert('Error while Copying...!!!');";
+               echo '</script>';
+                  
+            
+          }
+          
+          
+      }
+        
+  
+  
+  
+    
+  }
+  else
+  {
+
+
+$q=mysqli_query($con,"insert into bb_dailystock_curr (bb_regno,date,wb_a_pos,wb_a_neg,wb_b_pos,wb_b_neg,wb_o_pos,wb_o_neg,wb_ab_pos,wb_ab_neg,pcv_a_pos,pcv_a_neg,pcv_b_pos,pcv_b_neg,pcv_o_pos,pcv_o_neg,pcv_ab_pos,pcv_ab_neg,rdp_a_pos,rdp_a_neg,rdp_b_pos,rdp_b_neg,rdp_o_pos,rdp_o_neg,rdp_ab_pos,rdp_ab_neg,ffp_a_pos,ffp_a_neg,ffp_b_pos,ffp_b_neg,ffp_o_pos,ffp_o_neg,ffp_ab_pos,ffp_ab_neg) values('".$_SESSION['bb_id']."','$date','$wb_a_pos','$wb_a_neg','$wb_b_pos','$wb_b_neg','$wb_o_pos','$wb_o_neg','$wb_ab_pos','$wb_ab_neg','$pcv_a_pos','$pcv_a_neg','$pcv_b_pos','$pcv_b_neg','$pcv_o_pos','$pcv_o_neg','$pcv_ab_pos','$pcv_ab_neg','$rdp_a_pos','$rdp_a_neg','$rdp_b_pos','$rdp_b_neg','$rdp_o_pos','$rdp_o_neg','$rdp_ab_pos','$rdp_ab_neg','$ffp_a_pos','$ffp_a_neg','$ffp_b_pos','$ffp_b_neg','$ffp_o_pos','$ffp_o_neg','$ffp_ab_pos','$ffp_ab_neg')") or die(mysqli_error($con));
+
+  if($q)
+  { 
+    echo"<script>";
+    echo"alert('Record Inserted');";
+    echo"</script>";
+  }
+  else
+  {
+    echo"<script>";
+    echo"alert('Error While Inserting Record.....');";
+    echo"</script>";
+  }
+  
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +173,24 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
     width:10%;
 }
 #footer img {width:100%;}
+.input-group{
+  padding-bottom:12px;
+  
+  
+}
   </style>
+  <SCRIPT language=Javascript>
+      <!--
+      function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      }
+      //-->
+   </SCRIPT>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -127,7 +272,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview"><a href="bloodbankProfile.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
-        <li><a href="#"><i class="fa fa-th-list"></i> <span>Update  Stock</span></a></li>
+        <li><a href="updateStock.php"><i class="fa fa-th-list"></i> <span>Update  Stock</span></a></li>
         <li><a href="#"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
         <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         <li><a href="changePassword.php"><i class="fa fa-save"></i> <span>Change Password</span></a></li>
@@ -142,12 +287,12 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Current Stock
+        Update Stock
         <!--<small>advanced tables</small>-->
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Current Stock</li>
+          <li class="active">Update Stock</li>
       </ol>
     </section>
 
@@ -155,109 +300,379 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
-         
-          <div class="box">
-            <div class="box-header">
-              <!-- <h3 class="box-title">Current Stock</h3> -->
-            </div>
-            <!-- /.box-header -->
+            <div class="box">
+            <div class="box-header">       
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+      <div class="container-fluid">
+            <div class="row">
             
-               <?php
-                  include "include/connection.php";    
-                  $query = mysqli_query($con, "select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'");
-                    echo "<br />Total Number of Records:".mysqli_num_rows($query);
-                    if(mysqli_num_rows($query)>0)
-                    {
-                      ?>
-                                 
-            
-            
-            <div class="box-body">
-              <table id="example2" class="responsive table table-bordered table-striped">
-                <thead>
-                <tr>
-                   <th>Component/Blood Group</th>
-                  <th>A+ve</th>
-                  <th>O+ve</th>
-                  <th>B+ve</th>
-                  <th>AB+ve</th>
-                  <th>A-ve</th>
-                  <th>O-ve</th>
-                  <th>B-ve</th>
-                  <th>AB-ve</th>
-              </tr>
-                </thead>
-                <tbody>
+           
+              <div class="row">
+                <div class="col-md-6">
+                <div class="col-md-12" align="left"><p>Blood Bank Name</p></div>
+                <div class="col-md-12" align="left">
                 
-                        <?php
+                        <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input  name="first_name" placeholder="Name" class="form-control"  type="text" id="bbn" value="<?php echo $rec['bb_name'];?>" >
+                                </div>
+            
+                
+                
+                </div>
+                
+                </div>
+                
+    <form role="form" id="ps_entry" name="ps_entry" method="post" onsubmit="return entry_check()" action="">  
+                <div class="col-md-6">
+                <div class="col-md-12" align="left"><p>Date</p></div>
+                 <div class="col-md-12" align="left">
+                 <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                 <input type="date" value="<?php echo date('Y-m-d'); ?>" name="date" placeholder="01/02/2014" class="form-control" id="date"/>
+                  </div>
+                 </div> 
+                  
+                
+                
+                
+                </div>
+               
+            </div>
+            
+      
+             <div class="col-md-12" align="left"><p>Daily Stock</p></div>
+            
+            
+            <div class="col-md-12" align="left">
+                <ul class="nav nav-tabs nav-justified">
+                        <li class="active"><a data-toggle="tab" href="#wb">Whole Blood</a></li>
+                        <li><a data-toggle="tab" href="#pcv">PCV</a></li>
+                        <li><a data-toggle="tab" href="#rdp">RDP</a></li>
+                        <li><a data-toggle="tab" href="#ffp">FFP</a></li>
+                      </ul>
+            
+            
+            
+                  
+             </div>
               
-              $result=mysqli_fetch_assoc($query);
-              extract($result);
+              <div class="col-md-12" align="left">&nbsp;</div>
+              
+             
+              
+              
+              
+              
+              
+ <div class="tab-content">
+    <div id="wb" class="tab-pane fade in active">
+    
+                        
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">A+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_a_pos" onkeypress="return isNumberKey(event)" id="wb_a_pos">
+                        </div>
+                 </div>
                 
-                ?>
-            <tr>
-                <td>Whole Blood</td>
-                <td class="center"><?php echo $wb_a_pos?></td>
-                <td class="center"><?php echo $wb_o_pos?></td>
-                <td class="center"><?php echo $wb_b_pos?></td>
-                <td class="center"><?php echo $wb_ab_pos?></td>
-                <td class="center"><?php echo $wb_a_neg?></td>
-                <td class="center"><?php echo $wb_o_neg?></td>
-                <td class="center"><?php echo $wb_b_neg?></td>               
-                <td class="center"><?php echo $wb_ab_neg?></td>
-              </tr>
-
-               <tr>
-                <td>PCV</td>
-                <td class="center"><?php echo $pcv_a_pos?></td>
-                <td class="center"><?php echo $pcv_o_pos?></td>
-                <td class="center"><?php echo $pcv_b_pos?></td>
-                <td class="center"><?php echo $pcv_ab_pos?></td>
-                <td class="center"><?php echo $pcv_a_neg?></td>
-                <td class="center"><?php echo $pcv_o_neg?></td>
-                <td class="center"><?php echo $pcv_b_neg?></td>               
-                <td class="center"><?php echo $pcv_ab_neg?></td>              
                 
-              </tr>
-
-
-               <tr>
-                <td>RDP</td>
-                <td class="center"><?php echo $rdp_a_pos?></td>
-                <td class="center"><?php echo $rdp_o_pos?></td>
-                <td class="center"><?php echo $rdp_b_pos?></td>
-                <td class="center"><?php echo $rdp_ab_pos?></td>
-                <td class="center"><?php echo $rdp_a_neg?></td>
-                <td class="center"><?php echo $rdp_o_neg?></td>
-                <td class="center"><?php echo $rdp_b_neg?></td>               
-                <td class="center"><?php echo $rdp_ab_neg?></td>           
-                
-              </tr>
-
-
-               <tr>
-                <td>FFP</td>
-              <td class="center"><?php echo $ffp_a_pos?></td>
-                <td class="center"><?php echo $ffp_o_pos?></td>
-                <td class="center"><?php echo $ffp_b_pos?></td>
-                <td class="center"><?php echo $ffp_ab_pos?></td>
-                <td class="center"><?php echo $ffp_a_neg?></td>
-                <td class="center"><?php echo $ffp_o_neg?></td>
-                <td class="center"><?php echo $ffp_b_neg?></td>               
-                <td class="center"><?php echo $ffp_ab_neg?></td>               
-                
-              </tr>
-       
-          </tfoot>
-      </table>
-   <?php
-      }
-    ?>  
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">A-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_a_neg" onkeypress="return isNumberKey(event)" id="wb_a_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">B+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_b_pos" onkeypress="return isNumberKey(event)" id="wb_b_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">B-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_b_neg" onkeypress="return isNumberKey(event)" id="wb_b_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">O+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_o_pos" onkeypress="return isNumberKey(event)" id="wb_o_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">O-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_o_neg" onkeypress="return isNumberKey(event)" id="wb_o_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">AB+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_ab_pos" onkeypress="return isNumberKey(event)" id="wb_ab_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">AB-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_ab_neg" onkeypress="return isNumberKey(event)" id="wb_ab_neg">
+                        </div>
+                 </div>
+    </div>
+    <div id="pcv" class="tab-pane fade">
                             
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">A+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_a_pos" onkeypress="return isNumberKey(event)" id="pcv_a_pos">
+                        </div>
+                 </div>
+                
+                
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">A-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_a_neg" onkeypress="return isNumberKey(event)" id="pcv_a_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">B+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_b_pos" onkeypress="return isNumberKey(event)" id="pcv_b_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">B-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_b_neg" onkeypress="return isNumberKey(event)" id="pcv_b_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">O+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_o_pos" onkeypress="return isNumberKey(event)" id="pcv_o_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">O-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_o_neg" onkeypress="return isNumberKey(event)" id="pcv_o_neg">
+                        </div>
+                 </div>
+                 
+                 
+                            <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">AB+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_ab_pos" onkeypress="return isNumberKey(event)" id="pcv_ab_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">AB-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_ab_neg" onkeypress="return isNumberKey(event)" id="pcv_ab_neg">
+                        </div>
+                 </div>
+    </div>
+    <div id="rdp" class="tab-pane fade">
+    
+                      
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">A+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_a_pos" onkeypress="return isNumberKey(event)" id="rdp_a_pos">
+                        </div>
+                 </div>
+                
+                
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">A-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_a_neg" onkeypress="return isNumberKey(event)" id="rdp_a_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">B+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_b_pos" onkeypress="return isNumberKey(event)" id="rdp_b_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">B-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_b_neg" onkeypress="return isNumberKey(event)" id="rdp_b_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">O+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_o_pos" onkeypress="return isNumberKey(event)" id="rdp_o_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">O-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_o_neg" onkeypress="return isNumberKey(event)" id="rdp_o_neg">
+                        </div>
+                 </div>
+                 
+                 
+                            <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">AB+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_ab_pos" onkeypress="return isNumberKey(event)" id="rdp_ab_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">AB-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_ab_neg" onkeypress="return isNumberKey(event)" id="rdp_ab_neg">
+                        </div>
+                 </div>
+    </div>
+    <div id="ffp" class="tab-pane fade">
+    
+                  
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">A+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_a_pos" onkeypress="return isNumberKey(event)" id="ffp_a_pos">
+                        </div>
+                 </div>
+                
+                
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">A-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_a_neg" onkeypress="return isNumberKey(event)" id="ffp_a_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">B+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_b_pos" onkeypress="return isNumberKey(event)" id="ffp_b_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">B-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_b_neg" onkeypress="return isNumberKey(event)" id="ffp_b_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">O+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_o_pos" onkeypress="return isNumberKey(event)" id="ffp_o_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">O-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_o_neg" onkeypress="return isNumberKey(event)" id="ffp_o_neg">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">AB+</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_ab_pos" onkeypress="return isNumberKey(event)" id="ffp_ab_pos">
+                        </div>
+                 </div>
+                 
+                 
+              <div class="col-md-3">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">AB-</span>
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_ab_neg" onkeypress="return isNumberKey(event)" id="ffp_ab_neg">
+                        </div>
+                 </div>
+    </div>
+  </div>
+</div>
+
+ 
+      
+      
+   
+              
+              
+              
+    
+                 <div class="col-md-12" align="left">&nbsp;</div>
+            
+                 <div class="col-md-12" align="center">
+                   
+                    <input type="submit" name="submit" value="Submit" id="submitBtn" class="btn btn-primary" />
+                   
+                 
+                   
+                   </div>
+
+      </form> 
+          
             </div>
-            <!-- /.box-body -->
+       
           </div>
-          <!-- /.box -->
+            
+           
+         
+<div class="col-md-2"></div>
+</div></div>
+        </div>
+        </div>
+
+
+
+
+
+
+
+         
 
         </div>
         <!-- /.col -->
