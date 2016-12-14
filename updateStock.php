@@ -273,8 +273,8 @@ $q=mysqli_query($con,"insert into bb_dailystock_curr (bb_regno,date,wb_a_pos,wb_
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview"><a href="bloodbankProfile.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
         <li><a href="updateStock.php"><i class="fa fa-th-list"></i> <span>Update  Stock</span></a></li>
-        <li><a href="#"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
-        <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+        <li><a href="historicalStock.php"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
+        <li><a href="userProfile.php"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         <li><a href="changePassword.php"><i class="fa fa-save"></i> <span>Change Password</span></a></li>
           <li><a href="logout.php"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>    
       </ul>
