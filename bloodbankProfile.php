@@ -25,6 +25,8 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+   <!-- Table style -->
+   <link rel="stylesheet" href="dist/css/table.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   
