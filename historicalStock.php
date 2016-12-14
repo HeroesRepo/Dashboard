@@ -3,7 +3,7 @@ session_start();
 ?>
 <?php
 include "include/connection.php";
-$query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
+$query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
     $res2=mysqli_query($con,$query2);
     $rec=mysqli_fetch_array($res2);
 ?>
@@ -157,102 +157,66 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
         <div class="col-xs-12">
          
           <div class="box">
-            <div class="box-header">
-              <!-- <h3 class="box-title">Current Stock</h3> -->
-            </div>
+            <div class="box-header"></div>
             <!-- /.box-header -->
-            
-               <?php
-                  include "include/connection.php";    
-                  $query = mysqli_query($con, "select * from bb_dailystock_hist where bb_regno='".$_SESSION['bb_regno']."'");
-                    echo "<br />Total Number of Records:".mysqli_num_rows($query);
-                    if(mysqli_num_rows($query)>0)
-                    {
-                      ?>
-                                 
-            
-            
-            <div class="box-body">
-              <table id="example2" class="responsive table table-bordered table-striped">
-                <thead>
-                <tr>
-                   <th>Component/Blood Group</th>
-                  <th>A+ve</th>
-                  <th>O+ve</th>
-                  <th>B+ve</th>
-                  <th>AB+ve</th>
-                  <th>A-ve</th>
-                  <th>O-ve</th>
-                  <th>B-ve</th>
-                  <th>AB-ve</th>
-              </tr>
-                </thead>
-                <tbody>
-                
-                        <?php
-              
-              $result=mysqli_fetch_assoc($query);
-              extract($result);
-                
-                ?>
-            <tr>
-                <td>Whole Blood</td>
-                <td class="center"><?php echo $wb_a_pos?></td>
-                <td class="center"><?php echo $wb_o_pos?></td>
-                <td class="center"><?php echo $wb_b_pos?></td>
-                <td class="center"><?php echo $wb_ab_pos?></td>
-                <td class="center"><?php echo $wb_a_neg?></td>
-                <td class="center"><?php echo $wb_o_neg?></td>
-                <td class="center"><?php echo $wb_b_neg?></td>               
-                <td class="center"><?php echo $wb_ab_neg?></td>
-              </tr>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="date" value="<?php echo date('Y-m-d'); ?>" name="date" placeholder="01/02/2014" class="form-control" id="date"/>
+                   </div>
+                    <div class="input-group"><center>
+                    <button type="submit" id="searchButton" class="btn btn-lg btn-default btn-custom-search">Search</button>
+                     <input type="text" id="input" value=""/>
+                   </center>
+                   </div>
+                </div>
+                <div class="col-md-2"></div>
+              </div>
+            </div>
 
-               <tr>
-                <td>PCV</td>
-                <td class="center"><?php echo $pcv_a_pos?></td>
-                <td class="center"><?php echo $pcv_o_pos?></td>
-                <td class="center"><?php echo $pcv_b_pos?></td>
-                <td class="center"><?php echo $pcv_ab_pos?></td>
-                <td class="center"><?php echo $pcv_a_neg?></td>
-                <td class="center"><?php echo $pcv_o_neg?></td>
-                <td class="center"><?php echo $pcv_b_neg?></td>               
-                <td class="center"><?php echo $pcv_ab_neg?></td>              
-                
-              </tr>
+            <div id="table-container"></div>
+<script src="dist/js/jquery.js"></script>
+
+<script>
+$(document).ready(function()
+{
+  var $date1 = $('#date');
+  
+  var $searchButton1 = $('#searchButton');
+  
+  
+$searchButton1.on('click',function(){
+
+$('#input').val($date1.eq(0).val());
+var value=$('#input').val();
+console.log(value);
+$.ajax(
+{
+url:'fetchdata.php',
+type:'POST',
+data:'request='+value,
+beforeSend:function()
+{
+  $("#table-container").html('Working On...');
+},
+success:function(data)
+{
+  $("#table-container").html(data);
+},
+
+});
+});
+});
 
 
-               <tr>
-                <td>RDP</td>
-                <td class="center"><?php echo $rdp_a_pos?></td>
-                <td class="center"><?php echo $rdp_o_pos?></td>
-                <td class="center"><?php echo $rdp_b_pos?></td>
-                <td class="center"><?php echo $rdp_ab_pos?></td>
-                <td class="center"><?php echo $rdp_a_neg?></td>
-                <td class="center"><?php echo $rdp_o_neg?></td>
-                <td class="center"><?php echo $rdp_b_neg?></td>               
-                <td class="center"><?php echo $rdp_ab_neg?></td>           
-                
-              </tr>
+ 
+   </script>  
 
 
-               <tr>
-                <td>FFP</td>
-              <td class="center"><?php echo $ffp_a_pos?></td>
-                <td class="center"><?php echo $ffp_o_pos?></td>
-                <td class="center"><?php echo $ffp_b_pos?></td>
-                <td class="center"><?php echo $ffp_ab_pos?></td>
-                <td class="center"><?php echo $ffp_a_neg?></td>
-                <td class="center"><?php echo $ffp_o_neg?></td>
-                <td class="center"><?php echo $ffp_b_neg?></td>               
-                <td class="center"><?php echo $ffp_ab_neg?></td>               
-              </tr>
-   
-          </tfoot>
-      </table>
-   <?php
-      }
-    ?>  
-                            
+
             </div>
             <!-- /.box-body -->
           </div>
