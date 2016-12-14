@@ -158,15 +158,9 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
 
       <!-- Default box -->
       <div class="box">
-        <div class="box-header with-border">
-         
-
-        
-        </div>
+        <div class="box-header"></div>
         <div class="box-body">
-         
-          
-             <div class="row">
+        <div class="row">
         <!-- left column -->
         <div class="col-md-3"></div>
         
@@ -198,7 +192,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
 
               <div class="box-footer" align="center">
                 <button type="submit" name="change" class="btn btn-primary">Change Password</button>
-				<a href="profile.php"><button type="button" class="btn btn-danger">Cancel</button></a>
+				<a href="bloodbankProfile.php"><button type="button" class="btn btn-danger">Cancel</button></a>
               </div>
             </form>
           </div>
@@ -277,6 +271,9 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
 
     </section>
     <!-- /.content -->
+     <div id="footer">
+        <img src= "images/logo.png" />
+      </div>
   </div>
   <!-- /.content-wrapper -->
 
