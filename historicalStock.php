@@ -162,21 +162,25 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
             <div class="container">
               <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-5">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         <input type="date" value="<?php echo date('Y-m-d'); ?>" name="date" placeholder="01/02/2014" class="form-control" id="date"/>
                    </div>
-                    <div class="input-group"><center>
-                    <button type="submit" id="searchButton" class="btn btn-lg btn-default btn-custom-search">Search</button>
-                     <input type="text" id="input" value=""/>
-                   </center>
-                   </div>
+                   
                 </div>
+                 <div class="col-md-3">
+                   
+                    <div class="input-group">
+                    <button type="submit" id="searchButton" class="btn btn-md btn-primary btn-custom-search">Search</button>
+                     <input type="text" id="input" value="" hidden="" />
+                   
+                   </div>
+                 </div>
                 <div class="col-md-2"></div>
               </div>
             </div>
-
+            <br>
             <div id="table-container"></div>
 <script src="dist/js/jquery.js"></script>
 
