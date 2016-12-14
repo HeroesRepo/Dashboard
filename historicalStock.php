@@ -136,12 +136,12 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Current Stock
+        Historical Stock
         <!--<small>advanced tables</small>-->
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Current Stock</li>
+          <li class="active">Historical Stock</li>
       </ol>
     </section>
 
@@ -151,8 +151,8 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
         <div class="col-xs-12">
          
           <div class="box">
-            <div class="box-header">
-            <!-- /.box-header -->
+            <div class="box-header"><br>
+           
 
             <div class="container">
               <div class="row">
@@ -176,9 +176,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
 
                 
               </div>
-            </div>
-
-            <br>
+            </div><br>
   <div id="table-container"></div>          
 <script src="dist/js/jquery.js"></script>
 
@@ -217,8 +215,8 @@ success:function(data)
  
    </script>  
 
-</div>
-
+              </div>
+             <!-- /.box-header -->
             </div>
             <!-- /.box-body -->
           </div>
