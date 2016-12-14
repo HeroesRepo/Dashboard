@@ -38,16 +38,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  <style>
-    #footer {
-    position:fixed;
-    right:0;
-    bottom:0;
-    margin:0;
-    width:10%;
-}
-#footer img {width:100%;}
-  </style>
+ 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
