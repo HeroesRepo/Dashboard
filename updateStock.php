@@ -79,7 +79,7 @@ $q=mysqli_query($con,"select * from bb_dailystock_curr where bb_regno='".$_SESSI
                if($query)
                           {
                            echo '<script type="text/javascript">';
-                           echo " alert('Record Updated');";
+                           //echo " alert('Record Updated');";
                            //echo 'window.location.href = "bloodbankProfile.php";'; 
                            echo '</script>';
                   
@@ -87,7 +87,7 @@ $q=mysqli_query($con,"select * from bb_dailystock_curr where bb_regno='".$_SESSI
                          else
                          {
                            echo '<script type="text/javascript">';
-                           echo "alert('Eror Occured');";
+                           //echo "alert('Eror Occured');";
                              die(mysqli_error($con));
                              echo '<script>';
                              //echo $cQry;
@@ -98,7 +98,7 @@ $q=mysqli_query($con,"select * from bb_dailystock_curr where bb_regno='".$_SESSI
           else
           {
               echo '<script type="text/javascript">';
-              echo " alert('Error while Copying...!!!');";
+              //echo " alert('Error while Copying...!!!');";
                echo '</script>';
                   
             
@@ -121,13 +121,13 @@ $q=mysqli_query($con,"insert into bb_dailystock_curr (bb_regno,date,wb_a_pos,wb_
   if($q)
   { 
     echo"<script>";
-    echo"alert('Record Inserted');";
+    //echo"alert('Record Inserted');";
     echo"</script>";
   }
   else
   {
     echo"<script>";
-    echo"alert('Error While Inserting Record.....');";
+    //echo"alert('Error While Inserting Record.....');";
     echo"</script>";
   }
   
@@ -259,7 +259,7 @@ $q=mysqli_query($con,"insert into bb_dailystock_curr (bb_regno,date,wb_a_pos,wb_
       <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview"><a href="bloodbankProfile.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
+        <li class="treeview"><a href="currentdailyStock.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
         <li><a href="updateStock.php"><i class="fa fa-th-list"></i> <span>Update  Stock</span></a></li>
         <li><a href="historicalStock.php"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
         <li><a href="userProfile.php"><i class="fa fa-user"></i> <span>Profile</span></a></li>
@@ -635,7 +635,7 @@ $q=mysqli_query($con,"insert into bb_dailystock_curr (bb_regno,date,wb_a_pos,wb_
             
                  <div class="col-md-12" align="center">
                    
-                    <input type="submit" name="submit" value="Submit" id="submitBtn" class="btn btn-primary" />
+                    <input type="submit" name="submit" value="Update" id="submitBtn" class="btn btn-primary" />
                    
                  
                    
