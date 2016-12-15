@@ -216,9 +216,7 @@ success:function(data)
    </script>  
 
               </div>
-             <!-- /.box-header -->
-            </div>
-            <!-- /.box-body -->
+             <!-- /.box-header --> 
           </div>
           <!-- /.box -->
 
@@ -238,7 +236,7 @@ success:function(data)
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2016 <a href="#">Heroes</a>.</strong> All rights
     reserved.
   </footer>
 
