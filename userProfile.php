@@ -233,7 +233,7 @@ if(isset($_POST['update']))
                           <input name="contact_no" placeholder="(845)555-1212" class="form-control" type="text" onkeypress="return isNumberKey(event)" value="<?php echo $rec_credentials['contact_no']; ?>">
                           </div></td></tr>
                            <tr><td>&nbsp;</td></tr>
-                            <tr><td>&nbsp;</td><td align="left"><input type="submit" name="update" class="btn btn-success"></td></tr>
+                            <tr><td>&nbsp;</td><td align="left"><input type="submit" name="update" class="btn btn-success" value="Update Profile"></td></tr>
 
                         </form> 
                     </table>
