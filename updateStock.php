@@ -153,6 +153,7 @@ $q=mysqli_query($con,"insert into bb_dailystock_curr (bb_regno,date,wb_a_pos,wb_
   <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
    <!-- Table style -->
    <link rel="stylesheet" href="dist/css/table.css">
+    <link rel="stylesheet" href="dist/css/stylesheet.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -300,36 +301,21 @@ $q=mysqli_query($con,"insert into bb_dailystock_curr (bb_regno,date,wb_a_pos,wb_
            
               <div class="row">
                 <div class="col-md-6">
-                <div class="col-md-12" align="left"><p>Blood Bank Name</p></div>
+                <div class="col-md-12" align="left">Date</div>
                 <div class="col-md-12" align="left">
-                
+                 <form role="form" id="ps_entry" name="ps_entry" method="post" onsubmit="return entry_check()" action="">  
                         <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input  name="first_name" placeholder="Name" class="form-control"  type="text" id="bbn" value="<?php echo $rec['bb_name'];?>" >
-                                </div>
-            
-                
-                
-                </div>
-                
-                </div>
-                
-    <form role="form" id="ps_entry" name="ps_entry" method="post" onsubmit="return entry_check()" action="">  
-                <div class="col-md-6">
-                <div class="col-md-12" align="left"><p>Date</p></div>
-                 <div class="col-md-12" align="left">
-                 <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                  <input type="date" value="<?php echo date('Y-m-d'); ?>" name="date" placeholder="01/02/2014" class="form-control" id="date"/>
                   </div>
-                 </div> 
-                  
-                
-                
-                
-                </div>
-               
             </div>
+        </div>
+                
+   
+                <div class="col-md-6">
+                <div class="col-md-12" align="left"><p></p></div>
+                 <div class="col-md-12" align="left"></div> 
+              </div></div>
             
       
              <div class="col-md-12" align="left"><p>Daily Stock</p></div>
