@@ -678,7 +678,7 @@ $q=mysqli_query($con,"insert into bb_dailystock_curr (bb_regno,date,wb_a_pos,wb_
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2016 <a href="#">Heroes</a>.</strong> All rights
     reserved.
   </footer>
 
