@@ -119,7 +119,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
       <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview"><a href="bloodbankProfile.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
+        <li class="treeview"><a href="#"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
         <li><a href="updateStock.php"><i class="fa fa-th-list"></i> <span>Update  Stock</span></a></li>
         <li><a href="historicalStock.php"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
         <li><a href="userProfile.php"><i class="fa fa-user"></i> <span>Profile</span></a></li>

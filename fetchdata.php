@@ -11,6 +11,7 @@ session_start();
 </head>
 
 <body>
+
 <?php
 if($_POST['request'])
 {
@@ -21,7 +22,7 @@ $result=mysqli_query($con,$query);
 echo "<br />Total Number of Records ".mysqli_num_rows($result);
 ?>
 
-<div id="no-more-tables">
+        <div id="no-more-tables">
                 <table class="col-md-12 table table-hover cf" id="example2">
                     <thead class="cf">
                         <tr>
