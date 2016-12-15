@@ -104,7 +104,7 @@ if(isset($_POST['update']))
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="currentdailyStock.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">Heroes</span>
       <!-- logo for regular state and mobile devices -->
