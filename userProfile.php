@@ -262,7 +262,7 @@ if(isset($_POST['update']))
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2016 <a href="#">Heroes</a>.</strong> All rights
     reserved.
   </footer>
 
