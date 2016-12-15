@@ -68,14 +68,14 @@ if(mysqli_num_rows($query)==1)
 				if($q)
 				{ 
 					echo"<script>";
-					echo"alert('Registered Sucessfully...!!!');";
+					//echo"alert('Registered Sucessfully...!!!');";
 					echo "window.location.href='registered.html'";
 					echo"</script>";
 				}
 				else
 				{
 					echo"<script>";
-					echo"alert('Error While Inserting Record.....');";
+					//echo"alert('Error While Inserting Record.....');";
 					echo"</script>";
 				}
 			}
