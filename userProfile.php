@@ -25,7 +25,7 @@ if(isset($_POST['update']))
    if($query)
                           {
                echo '<script type="text/javascript">';
-               echo " alert('Record Updated');";
+               //echo " alert('Record Updated');";
                //echo 'window.location.href = "userProfile.php";'; 
                echo '</script>';
       
@@ -33,7 +33,7 @@ if(isset($_POST['update']))
                        else
                        {
                echo '<script type="text/javascript">';
-               echo "alert('Eror Occured');";
+               //echo "alert('Eror Occured');";
                            die(mysqli_error($con));
                  echo '<script>';
                            //echo $cQry;
@@ -178,7 +178,7 @@ if(isset($_POST['update']))
       <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview"><a href="bloodbankProfile.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
+        <li class="treeview"><a href="currentdailyStock.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
         <li><a href="updateStock.php"><i class="fa fa-th-list"></i> <span>Update  Stock</span></a></li>
         <li><a href="historicalStock.php"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
         <li><a href="userProfile.php"><i class="fa fa-user"></i> <span>Profile</span></a></li>
