@@ -37,14 +37,13 @@ include "include/connection.php";
 				$_SESSION['bb_regno']=$row['bb_regno'];
 				
 					echo"<script>";
-					echo"alert('Login Successful');";
-					echo"window.location.href='bloodbankProfile.php'";
+					echo"window.location.href='currentdailyStock.php'";
 					echo"</script>";
 				}
 				else
 				{
 					echo"<script>";
-					echo"alert('Login Failed');";
+					//echo"alert('Login Failed');";
 					echo"</script>";
 				}
 			}
