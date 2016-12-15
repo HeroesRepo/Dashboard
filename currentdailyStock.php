@@ -45,7 +45,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="currentdailyStock.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">Heroes</span>
       <!-- logo for regular state and mobile devices -->
@@ -239,35 +239,24 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
               <!-- <h3 class="box-title">Current Stock</h3> -->
             </div>
             <!-- /.box-header -->
-            
-                       
-            
-          
-            </div>
-            <!-- /.box-body -->
-          </div>
+         </div>
           <!-- /.box -->
-
-        </div>
+       </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>
-    <div id="footer">
-    <img src= "images/logo.png" />
-</div>
+  <div id="footer">
+      <img src= "images/logo.png" />
+  </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
- 
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-     
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+<footer class="main-footer">
+    <div class="pull-right hidden-xs"></div>
+    <strong>Copyright &copy; 2016 <a href="#">Heroes</a>.</strong> All rights
     reserved.
   </footer>
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
