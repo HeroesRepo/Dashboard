@@ -14,9 +14,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="dist/css/style.css">
+<style>
+.error{
+	color: red;
+	
+}	
+</style>
 </head>
 
 <body>
+
 <?php
 include "include/connection.php";
 	if(isset($_POST['submit']))
@@ -25,7 +32,9 @@ include "include/connection.php";
 			$email_id=$_POST['email_id']; 
 			$password=$_POST['password']; 
 			$encrypted_mypassword=md5($password);
-			$sql=mysqli_query($con,"SELECT * FROM bb_credentials WHERE email_id='$email_id' and password='$encrypted_mypassword'") or die(mysqli_error($con));
+
+
+$sql=mysqli_query($con,"SELECT * FROM bb_credentials WHERE email_id='$email_id' and password='$encrypted_mypassword'") or die(mysqli_error($con));
 //$result=mysql_query($sql);
 
 			if(mysqli_num_rows($sql)==1)
@@ -37,14 +46,43 @@ include "include/connection.php";
 				$_SESSION['bb_regno']=$row['bb_regno'];
 				
 					echo"<script>";
+					//echo "Login Successful..!!";
 					echo"window.location.href='currentdailyStock.php'";
 					echo"</script>";
 				}
 				else
 				{
-					echo"<script>";
-					//echo"alert('Login Failed');";
-					echo"</script>";
+
+					$query=mysqli_query($con,"select * from bb_credentials where email_id='$email_id'") or die(mysql_error($con));
+					if(mysqli_num_rows($query)==1)
+					{
+
+							$query1=mysqli_query($con,"select * from bb_credentials where password='$encrypted_mypassword'") or die(mysql_error($con));
+							if(mysqli_num_rows($query1)==1)
+							{
+
+							}
+							else
+							{
+								echo"<script>";
+								echo "alert('Password is incorrect...');";
+								echo"</script>";
+							}
+
+
+
+					}
+					else
+					{
+						echo"<script>";
+						echo "alert('Email-id is not registerd...');";
+						echo"</script>";
+					}
+
+					
+							
+							
+					
 				}
 			}
 ?>
@@ -64,22 +102,22 @@ include "include/connection.php";
 <div class="col-md-7">
 
 	<div class="row">
-    <form method="post">
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 		<div class="col-md-12" align="left"><p>Email</p></div>
         <div class="col-md-12">
             <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input name="email_id" placeholder="E-Mail Address" class="form-control"  type="email" id="email_id" required>
-            </div>
-          </div>
+            <input name="email_id" placeholder="E-Mail Address" class="form-control"  type="email" id="email_id">
+           </div>
+           </div>
     
         <div class="col-md-12" align="left"><p>Password</p></div>
         <div class="col-md-12"> 
         	<div class="input-group">
         	<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  			<input name="password" placeholder="Password" class="form-control"  type="password" required>
+  			<input name="password" placeholder="Password" class="form-control"  type="password">
     		</div>
-   	    </div>
+    	</div>
     
     	<div class="col-md-12" align="center">&nbsp;</div>
     	<div class="col-md-12">	
