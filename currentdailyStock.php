@@ -152,6 +152,9 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
              include "include/connection.php";    
               $query = mysqli_query($con, "select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'");
               echo "<br />Total Number of Records:".mysqli_num_rows($query);
+               $result=mysqli_fetch_assoc($query);
+               extract($result);
+              echo "<br><b>Date:</b>". $date;
               if(mysqli_num_rows($query)>0)
                     {
           ?>
@@ -173,10 +176,10 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
                         </tr>
                     </thead>
                     <tbody>
-              <?php
-                  $result=mysqli_fetch_assoc($query);
-                  extract($result);
-                ?>
+             <!--  <?php
+                 $result=mysqli_fetch_assoc($query);
+                 extract($result);
+               ?> -->
                             <tr>
                               <td data-title="Component">Whole Blood</td>
                               <td class="center" data-title="A+ve"><?php echo $wb_a_pos?></td>
