@@ -1,5 +1,10 @@
 <?php<?php
 session_start();
+if (!(isset($_SESSION['bb_regno']) && $_SESSION['bb_regno'] != '')) {
+
+header ("Location: index.php");
+
+}
 ?>
 <?php
 include "include/connection.php";
