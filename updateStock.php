@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (!(isset($_SESSION['bb_regno']) && $_SESSION['bb_regno'] != '')) {
+
+header ("Location: index.php");
+
+}
 ?>
 <?php
 include "include/connection.php";
@@ -99,40 +104,52 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
 });
 </script>
 <script>
+ 
+
 function myFunction() {
-              var date = document.getElementById("date").value;
-              var wb_a_pos = document.getElementById("wb_a_pos").value;
-              var wb_a_neg = document.getElementById("wb_a_neg").value;
-              var wb_b_pos = document.getElementById("wb_b_pos").value;
-              var wb_b_neg = document.getElementById("wb_b_neg").value;
-              var wb_o_pos = document.getElementById("wb_o_pos").value;
-              var wb_o_neg = document.getElementById("wb_o_neg").value;
-              var wb_ab_pos = document.getElementById("wb_ab_pos").value;
-              var wb_ab_neg = document.getElementById("wb_ab_neg").value;
-              var pcv_a_pos = document.getElementById("pcv_a_pos").value;
-              var pcv_a_neg = document.getElementById("pcv_a_neg").value;
-              var pcv_b_pos = document.getElementById("pcv_b_pos").value;
-              var pcv_b_neg = document.getElementById("pcv_b_neg").value;
-              var pcv_o_pos = document.getElementById("pcv_o_pos").value;
-              var pcv_o_neg = document.getElementById("pcv_o_neg").value;
-              var pcv_ab_pos = document.getElementById("pcv_ab_pos").value;
-              var pcv_ab_neg = document.getElementById("pcv_ab_neg").value;
-              var rdp_a_pos = document.getElementById("rdp_a_pos").value;
-              var rdp_a_neg = document.getElementById("rdp_a_neg").value;
-              var rdp_b_pos = document.getElementById("rdp_b_pos").value;
-              var rdp_b_neg = document.getElementById("rdp_b_neg").value;
-              var rdp_o_pos = document.getElementById("rdp_o_pos").value;
-              var rdp_o_neg = document.getElementById("rdp_o_neg").value;
-              var rdp_ab_pos = document.getElementById("rdp_ab_pos").value;
-              var rdp_ab_neg = document.getElementById("rdp_ab_neg").value;
-              var ffp_a_pos = document.getElementById("ffp_a_pos").value;
-              var ffp_a_neg = document.getElementById("ffp_a_neg").value;
-              var ffp_b_pos = document.getElementById("ffp_b_pos").value;
-              var ffp_b_neg = document.getElementById("ffp_b_neg").value;
-              var ffp_o_pos = document.getElementById("ffp_o_pos").value;
-              var ffp_o_neg = document.getElementById("ffp_o_neg").value;
-              var ffp_ab_pos = document.getElementById("ffp_ab_pos").value;
-              var ffp_ab_neg = document.getElementById("ffp_ab_neg").value;
+
+
+               var populateModal_submit = function(value){
+                    if(value == "")
+                      return 0;
+                    else
+                      return value;
+
+                  } 
+
+              var date = populateModal_submit(document.getElementById("date").value);
+              var wb_a_pos = populateModal_submit(document.getElementById("wb_a_pos").value);
+              var wb_a_neg = populateModal_submit(document.getElementById("wb_a_neg").value);
+              var wb_b_pos = populateModal_submit(document.getElementById("wb_b_pos").value);
+              var wb_b_neg = populateModal_submit(document.getElementById("wb_b_neg").value);
+              var wb_o_pos = populateModal_submit(document.getElementById("wb_o_pos").value);
+              var wb_o_neg = populateModal_submit(document.getElementById("wb_o_neg").value);
+              var wb_ab_pos = populateModal_submit(document.getElementById("wb_ab_pos").value);
+              var wb_ab_neg = populateModal_submit(document.getElementById("wb_ab_neg").value);
+              var pcv_a_pos = populateModal_submit(document.getElementById("pcv_a_pos").value);
+              var pcv_a_neg = populateModal_submit(document.getElementById("pcv_a_neg").value);
+              var pcv_b_pos = populateModal_submit(document.getElementById("pcv_b_pos").value);
+              var pcv_b_neg = populateModal_submit(document.getElementById("pcv_b_neg").value);
+              var pcv_o_pos = populateModal_submit(document.getElementById("pcv_o_pos").value);
+              var pcv_o_neg = populateModal_submit(document.getElementById("pcv_o_neg").value);
+              var pcv_ab_pos = populateModal_submit(document.getElementById("pcv_ab_pos").value);
+              var pcv_ab_neg = populateModal_submit(document.getElementById("pcv_ab_neg").value);
+              var rdp_a_pos = populateModal_submit(document.getElementById("rdp_a_pos").value);
+              var rdp_a_neg = populateModal_submit(document.getElementById("rdp_a_neg").value);
+              var rdp_b_pos = populateModal_submit(document.getElementById("rdp_b_pos").value);
+              var rdp_b_neg = populateModal_submit(document.getElementById("rdp_b_neg").value);
+              var rdp_o_pos = populateModal_submit(document.getElementById("rdp_o_pos").value);
+              var rdp_o_neg = populateModal_submit(document.getElementById("rdp_o_neg").value);
+              var rdp_ab_pos = populateModal_submit(document.getElementById("rdp_ab_pos").value);
+              var rdp_ab_neg = populateModal_submit(document.getElementById("rdp_ab_neg").value);
+              var ffp_a_pos = populateModal_submit(document.getElementById("ffp_a_pos").value);
+              var ffp_a_neg = populateModal_submit(document.getElementById("ffp_a_neg").value);
+              var ffp_b_pos = populateModal_submit(document.getElementById("ffp_b_pos").value);
+              var ffp_b_neg = populateModal_submit(document.getElementById("ffp_b_neg").value);
+              var ffp_o_pos = populateModal_submit(document.getElementById("ffp_o_pos").value);
+              var ffp_o_neg = populateModal_submit(document.getElementById("ffp_o_neg").value);
+              var ffp_ab_pos = populateModal_submit(document.getElementById("ffp_ab_pos").value);
+              var ffp_ab_neg = populateModal_submit(document.getElementById("ffp_ab_neg").value);
 
 // Returns successful data submission message when the entered information is stored in database.
 var dataString = 'date1=' + date + '&wb_a_pos1=' + wb_a_pos + '&wb_a_neg1=' + wb_a_neg + '&wb_b_pos1=' + wb_b_pos + '&wb_b_neg1=' + wb_b_neg + '&wb_o_pos1=' + wb_o_pos + '&wb_o_neg1=' + wb_o_neg + '&wb_ab_pos1=' + wb_ab_pos + '&wb_ab_neg1=' + wb_ab_neg + '&pcv_a_pos1=' + pcv_a_pos + '&pcv_a_neg1=' + pcv_a_neg + '&pcv_b_pos1=' + pcv_b_pos + '&pcv_b_neg1=' + pcv_b_neg + '&pcv_o_pos1=' + pcv_o_pos + '&pcv_o_neg1=' + pcv_o_neg + '&pcv_ab_pos1=' + pcv_ab_pos + '&pcv_ab_neg1=' + pcv_ab_neg + '&rdp_a_pos1=' + rdp_a_pos + '&rdp_a_neg1=' + rdp_a_neg + '&rdp_b_pos1=' + rdp_b_pos + '&rdp_b_neg1=' + rdp_b_neg + '&rdp_o_pos1=' + rdp_o_pos + '&rdp_o_neg1=' + rdp_o_neg + '&rdp_ab_pos1=' + rdp_ab_pos + '&rdp_ab_neg1=' + rdp_ab_neg + '&ffp_a_pos1=' + ffp_a_pos + '&ffp_a_neg1=' + ffp_a_neg + '&ffp_b_pos1=' + ffp_b_pos + '&ffp_b_neg1=' + ffp_b_neg + '&ffp_o_pos1=' + ffp_o_pos + '&ffp_o_neg1=' + ffp_o_neg + '&ffp_ab_pos1=' + ffp_ab_pos + '&ffp_ab_neg1=' + ffp_ab_neg;
@@ -272,7 +289,7 @@ function isNumberKey(evt)
             <!-- /.box-header -->
         <div class="box-body">
              
-              <div class="container-fluid">
+    <div class="container-fluid">
     <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
