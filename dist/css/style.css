@@ -1,28 +1,18 @@
 @charset "utf-8";
 /* CSS Document */
-
-
 body{
 	background-color:#cfd2aa;
-	
 }
-
 img{
 	width:50%;
 	display:block;
-    margin:0 auto;
-	
+  margin:0 auto;
 }
 .input-group{
 	padding-bottom:5px;
-	
-	
 }
-
 button{
 	padding-bottom:12px;
-	
-	
 }
 .topcorner{
    position:absolute;
@@ -31,12 +21,9 @@ button{
    bottom:10px;
   }
 
-
-
-.modal-dialog{
-	width:50%;
+@media (max-width: 767px){
+.heroes-logo {
+    margin-bottom: -125px;
+    margin-top: -70px;
+	}
 }
-@media (max-width: @screen-xs-min) {
-  .modal-xs { width: @modal-sm; }
-}	 
-
