@@ -31,7 +31,7 @@ if(isset($_POST['update']))
                           {
                echo '<script type="text/javascript">';
                //echo " alert('Record Updated');";
-               //echo 'window.location.href = "userProfile.php";'; 
+               echo 'window.location.href = "userProfile.php";'; 
                echo '</script>';
       
                         }
@@ -179,9 +179,22 @@ if(isset($_POST['update']))
       <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
+         <li><a href="#"><i class="fa fa-th-list"></i> <span>Update  Stock</span>
+            <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+            </span>
+         </a>
+              <ul class="treeview-menu">
+                  <li><a href="form_one.php"><i class="fa fa-circle-o"></i> Form 1</a></li>
+                   <li><a href="form_two.php"><i class="fa fa-circle-o"></i> Form 2</a></li>
+                  <li><a href="form_three.php"><i class="fa fa-circle-o"></i> Form 3</a></li>
+                  <li><a href="form_four.php"><i class="fa fa-circle-o"></i> Form 4</a></li>
+                 <li><a href="form_five.php"><i class="fa fa-circle-o"></i> Form 5</a></li>
+              </ul>
+         </li>
         <li class="treeview"><a href="currentdailyStock.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
-        <li><a href="updateStock.php"><i class="fa fa-th-list"></i> <span>Update  Stock</span></a></li>
         <li><a href="historicalStock.php"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
+        <li><a href="findDonors.php"><i class="fa fa-search"></i> <span>Find Donors</span></a></li> 
         <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         <li><a href="changePassword.php"><i class="fa fa-save"></i> <span>Change Password</span></a></li>
           <li><a href="logout.php"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>    
@@ -219,7 +232,7 @@ if(isset($_POST['update']))
                       <tr><td>Blood Bank Name: </td><td>
                         <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input  name="bb_name" placeholder="Name" class="form-control"  type="text" id="bbn" onKeyPress="return ValidateAlpha(event);" value="<?php echo $rec['bb_name'];?>" ng-readonly>
+                        <input  name="bb_name" placeholder="Name" class="form-control"  type="text" id="bbn" onKeyPress="return ValidateAlpha(event);" value="<?php echo $rec['bb_name'];?>" ng-readonly ng-disabled="">
                         </div></td></tr>
                         <tr><td>&nbsp;</td></tr>
                         <tr><td>Email-id: </td><td>

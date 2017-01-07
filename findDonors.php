@@ -122,7 +122,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
       <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-         <li><a href="#"><i class="fa fa-th-list"></i> <span>Update  Stock</span>
+        <li><a href="#"><i class="fa fa-th-list"></i> <span>Update  Stock</span>
             <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -137,7 +137,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
          </li>
         <li class="treeview"><a href="currentdailyStock.php"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
         <li><a href="#"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
-        <li><a href="findDonors.php"><i class="fa fa-search"></i> <span>Find Donors</span></a></li>
+        <li><a href="findDonors.php"><i class="fa fa-search"></i> <span>Find Donors</span></a></li> 
         <li><a href="userProfile.php"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         <li><a href="changePassword.php"><i class="fa fa-save"></i> <span>Change Password</span></a></li>
           <li><a href="logout.php"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>    
@@ -174,11 +174,19 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
                 <div class="col-md-2"></div>
                 <div class="col-md-5">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        <input type="date" value="<?php echo date('Y-m-d'); ?>" name="date" placeholder="01/02/2014" class="form-control" id="date"/>
-                   </div>
-                   
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-tint"></i></span>
+                    <select class="form-control" id="bloodGroup">
+                      <option value="A+ve">A+ve</option>
+                      <option value="O+ve">O+ve</option>
+                      <option value="B+ve">B+ve</option>
+                      <option value="AB+ve">AB+ve</option>
+                       <option value="A-ve">A-ve</option>
+                      <option value="O-ve">O-ve</option>
+                      <option value="B-ve">B-ve</option>
+                      <option value="AB-ve">AB-ve</option>
+                    </select>
                 </div>
+            </div>
                  <div class="col-md-3">
                    
                     <div class="input-group">
@@ -192,45 +200,37 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"';
                 
               </div>
             </div><br>
-  <div id="table-container"></div>          
-<script src="dist/js/jquery.js"></script>
-
-<script>
-$(document).ready(function()
-{
-  var $date_new = $('#date');
-  
-  var $searchButton1 = $('#searchButton');
-  
-  
-$searchButton1.on('click',function(){
-
-$('#input').val($date_new.eq(0).val());
-var value=$('#input').val();
-console.log(value);
-$.ajax(
-{
-url:'fetchdata.php',
-type:'POST',
-data:'request='+value,
-beforeSend:function()
-{
-  $("#table-container").html('Working On...');
-},
-success:function(data)
-{
-  $("#table-container").html(data);
-},
-
-});
-});
-});
-
-
- 
-   </script>  
-
-              </div>
+            <div id="table-container"></div>          
+            <script src="dist/js/jquery.js"></script>
+            <script>
+                $(document).ready(function()
+                {
+                      var $bloodGroup_new = $('#bloodGroup');
+                      var $searchButton_new = $('#searchButton');
+                  $searchButton_new.on('click',function(){
+                      $('#input').val($bloodGroup_new.eq(0).val());
+                      var value=$('#input').val();
+                      //console.log(value);
+                      //var data = value;
+                      console.log(value);
+                  $.ajax(
+                        {
+                          url:'ajaxCallDonors.php',
+                          type:'POST',
+                          data:'request='+encodeURIComponent(value),
+                          beforeSend:function()
+                          {
+                            $("#table-container").html('Working On...');
+                          },
+                          success:function(data)
+                          {
+                            $("#table-container").html(data);
+                          },
+                      });
+                    });
+                  });
+            </script>  
+        </div>
              <!-- /.box-header --> 
           </div>
           <!-- /.box -->

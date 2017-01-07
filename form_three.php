@@ -18,6 +18,7 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Heroes</title>
+   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -57,6 +58,21 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   <![endif]-->
  <script>
   $( document ).ready(function() {
+     var currentBoxNumber = 0;
+    $(".form-control").keyup(function (event) {
+        if (event.keyCode == 13) {
+            textboxes = $("input.form-control");
+            currentBoxNumber = textboxes.index(this);
+            //console.log(textboxes.index(this));
+            if (textboxes[currentBoxNumber + 1] != null) {
+                nextBox = textboxes[currentBoxNumber + 1];
+                nextBox.focus();
+                nextBox.select();
+                event.preventDefault();
+                return false;
+            }
+        }
+});
     $('#submitBtn').click(function() {
          $('#wb_a_pos1').text(populateModal($('#wb_a_pos').val()));
          $('#wb_a_neg1').text(populateModal($('#wb_a_neg').val()));
@@ -370,7 +386,7 @@ function isNumberKey(evt)
               <div class="col-md-3">
                         <div class="input-group">
                           <span class="input-group-addon" id="basic-addon1">A+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_a_pos" onkeypress="return isNumberKey(event)" onkeyup="doNext(this);" id="wb_a_pos">
+                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_a_pos" onkeypress="return isNumberKey(event)" id="wb_a_pos">
                         </div>
                  </div>
                 

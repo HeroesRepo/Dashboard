@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Heroes</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -65,7 +66,7 @@ $sql=mysqli_query($con,"SELECT * FROM bb_credentials WHERE email_id='$email_id' 
 							else
 							{
 								echo"<script>";
-								echo "alert('Password is incorrect...');";
+								echo "alert('Password is incorrect...!');";
 								echo"</script>";
 							}
 
@@ -75,7 +76,7 @@ $sql=mysqli_query($con,"SELECT * FROM bb_credentials WHERE email_id='$email_id' 
 					else
 					{
 						echo"<script>";
-						echo "alert('Email-id is not registerd...');";
+						echo "alert('Email-id is not registerd...! Please Sign-In to continue...!');";
 						echo"</script>";
 					}
 
@@ -89,7 +90,7 @@ $sql=mysqli_query($con,"SELECT * FROM bb_credentials WHERE email_id='$email_id' 
 
 <div class="container">
 <div class="row">
-<div class="col-md-6" align="center"><div class="col-md-12" align="center">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><img src="images/logo.png"  alt="logo_image"  ></div>
+<div class="col-md-6" align="center"><div class="col-md-12" align="center">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><img class="img-responsive heroes-logo" src="images/logo.png"  alt="logo_image"  ></div>
 
     
 

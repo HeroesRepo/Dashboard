@@ -18,11 +18,12 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Heroes</title>
+   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
    <!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -44,11 +45,6 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 
-  <style>
-    .input-group{
-  padding-bottom:12px;
-  }
- </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -57,6 +53,22 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   <![endif]-->
  <script>
   $( document ).ready(function() {
+     var currentBoxNumber = 0;
+    $(".form-control").keyup(function (event) {
+        if (event.keyCode == 13) {
+            textboxes = $("input.form-control");
+            currentBoxNumber = textboxes.index(this);
+            console.log(textboxes.index(this));
+            if (textboxes[currentBoxNumber + 1] != null) {
+                nextBox = textboxes[currentBoxNumber + 1];
+                nextBox.focus();
+                nextBox.select();
+                event.preventDefault();
+                return false;
+            }
+        }
+});
+
     $('#submitBtn').click(function() {
          $('#wb_a_pos1').text(populateModal($('#wb_a_pos').val()));
          $('#wb_a_neg1').text(populateModal($('#wb_a_neg').val()));
@@ -174,7 +186,8 @@ var dataString = 'date1=' + date + '&wb_a_pos1=' + wb_a_pos + '&wb_a_neg1=' + wb
             });
         }
 </script>
-<SCRIPT language=Javascript>
+ 
+ <SCRIPT language=Javascript>
 function isNumberKey(evt)
       {
          var charCode = (evt.which) ? evt.which : event.keyCode
@@ -182,7 +195,8 @@ function isNumberKey(evt)
             return false;
             return true;
       }
-</SCRIPT>
+</SCRIPT> 
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -312,13 +326,13 @@ function isNumberKey(evt)
              
     <div class="container-fluid">
     <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
           <div class="container-fluid">
                 <div class="row">
                 
                
-                  <div class="row">
+                <div class="row">
                 <div class="col-md-6">
                 <div class="col-md-12" align="left">Date</div>
                 <div class="col-md-12" align="left">
@@ -339,324 +353,124 @@ function isNumberKey(evt)
               </div></div>
             
       
-             <div class="col-md-12" align="left"><p>Daily Stock</p></div>
+            <div class="col-md-12" align="left"><p>&nbsp;</p></div> 
             
-            
-            <div class="col-md-12" align="left">
-                <ul class="nav nav-tabs nav-justified">
-                        <li class="active"><a data-toggle="tab" href="#wb">Whole Blood</a></li>
-                        <li><a data-toggle="tab" href="#pcv">PCV</a></li>
-                        <li><a data-toggle="tab" href="#rdp">RDP</a></li>
-                        <li><a data-toggle="tab" href="#ffp">FFP</a></li>
-                      </ul>
-            
-            
-            
-                  
-             </div>
-              
-              <div class="col-md-12" align="left">&nbsp;</div>
-              
-             
-              
-              
-              
-              
-              
- <div class="tab-content">
-    <div id="wb" class="tab-pane fade in active">
-    
                         
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">A+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_a_pos" onkeypress="return isNumberKey(event)" onkeyup="doNext(this);" id="wb_a_pos">
-                        </div>
-                 </div>
-                
-                
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">A-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_a_neg" onkeypress="return isNumberKey(event)" id="wb_a_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">B+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_b_pos" onkeypress="return isNumberKey(event)" id="wb_b_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">B-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_b_neg" onkeypress="return isNumberKey(event)" id="wb_b_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">O+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_o_pos" onkeypress="return isNumberKey(event)" id="wb_o_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">O-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_o_neg" onkeypress="return isNumberKey(event)" id="wb_o_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">AB+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_ab_pos" onkeypress="return isNumberKey(event)" id="wb_ab_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">AB-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_ab_neg" onkeypress="return isNumberKey(event)" id="wb_ab_neg">
-                        </div>
-                 </div>
-                  
-                  <div class="col-md-12" align="right">
-                    <a class="btn btn-default btnNext">Next</a>
-                  </div>
-    </div>
-    <div id="pcv" class="tab-pane fade">
-                            
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">A+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_a_pos" onkeypress="return isNumberKey(event)" id="pcv_a_pos">
-                        </div>
-                 </div>
-                
-                
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">A-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_a_neg" onkeypress="return isNumberKey(event)" id="pcv_a_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">B+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_b_pos" onkeypress="return isNumberKey(event)" id="pcv_b_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">B-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_b_neg" onkeypress="return isNumberKey(event)" id="pcv_b_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">O+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_o_pos" onkeypress="return isNumberKey(event)" id="pcv_o_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">O-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_o_neg" onkeypress="return isNumberKey(event)" id="pcv_o_neg">
-                        </div>
-                 </div>
-                 
-                 
-                            <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">AB+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_ab_pos" onkeypress="return isNumberKey(event)" id="pcv_ab_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">AB-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_ab_neg" onkeypress="return isNumberKey(event)" id="pcv_ab_neg">
-                        </div>
-                 </div>
+          <div class="col-md-12">
+            <div class="panel panel-default" style="width: 100%">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Daily Stock</div>
 
-                   <div class="col-md-12">
-                   <a class="btn btn-default btnPrevious" style="float: left;">Previous</a>
-                    <a class="btn btn-default btnNext" style="float: right;">Next</a>
-                  </div>
+              <!-- Table -->
+              <table class="col-md-12 table table-hover cf table-bordered" id="example2" style="border: black">
+                    <thead class="cf">
+                        <tr>
+                            <th>Component/Blood Group</th>
+                            <th>A+ve</th>
+                            <th>O+ve</th>
+                            <th>B+ve</th>
+                            <th>AB+ve</th>
+                            <th>A-ve</th>
+                            <th>O-ve</th>
+                            <th>B-ve</th>
+                            <th>AB-ve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                  <tr>
+                    <td data-title="Component">Whole Blood</td>
 
-                   
-                   
-                
-               </div>
-    <div id="rdp" class="tab-pane fade">
-    
-                      
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">A+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_a_pos" onkeypress="return isNumberKey(event)" id="rdp_a_pos">
-                        </div>
-                 </div>
-                
-                
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">A-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_a_neg" onkeypress="return isNumberKey(event)" id="rdp_a_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">B+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_b_pos" onkeypress="return isNumberKey(event)" id="rdp_b_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">B-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_b_neg" onkeypress="return isNumberKey(event)" id="rdp_b_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">O+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_o_pos" onkeypress="return isNumberKey(event)" id="rdp_o_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">O-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_o_neg" onkeypress="return isNumberKey(event)" id="rdp_o_neg">
-                        </div>
-                 </div>
-                 
-                 
-                            <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">AB+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_ab_pos" onkeypress="return isNumberKey(event)" id="rdp_ab_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">AB-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_ab_neg" onkeypress="return isNumberKey(event)" id="rdp_ab_neg">
-                        </div>
-                 </div>
+                    <td class="center" data-title="A+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_a_pos" onkeypress="return isNumberKey(event)" id="wb_a_pos" style="width: 50px"></td>
 
-                  <div class="col-md-12">
-                   <a class="btn btn-default btnPrevious" style="float: left;">Previous</a>
-                    <a class="btn btn-default btnNext right" style="float: right;">Next</a>
-                  </div>
+                    <td class="center" data-title="O+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_o_pos" onkeypress="return isNumberKey(event)" id="wb_o_pos" style="width: 50px"></td>
 
-                   
-    </div>
-    <div id="ffp" class="tab-pane fade">
-    
-                  
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">A+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_a_pos" onkeypress="return isNumberKey(event)" id="ffp_a_pos">
-                        </div>
-                 </div>
-                
-                
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">A-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_a_neg" onkeypress="return isNumberKey(event)" id="ffp_a_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">B+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_b_pos" onkeypress="return isNumberKey(event)" id="ffp_b_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">B-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_b_neg" onkeypress="return isNumberKey(event)" id="ffp_b_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">O+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_o_pos" onkeypress="return isNumberKey(event)" id="ffp_o_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">O-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_o_neg" onkeypress="return isNumberKey(event)" id="ffp_o_neg">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">AB+</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_ab_pos" onkeypress="return isNumberKey(event)" id="ffp_ab_pos">
-                        </div>
-                 </div>
-                 
-                 
-              <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">AB-</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_ab_neg" onkeypress="return isNumberKey(event)" id="ffp_ab_neg">
-                        </div>
-                 </div>
-                 
-                  <div class="col-md-12">
-                   <a class="btn btn-default btnPrevious" style="float: left;">Previous</a>
-                    <input type="button" name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-primary" style="float: right;" />
-                  </div>          
-          </div>
-      </div>
-</div>
+                    <td class="center" data-title="B+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_b_pos" onkeypress="return isNumberKey(event)" id="wb_b_pos" style="width: 50px"></td>
 
+                    <td class="center" data-title="AB+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_ab_pos" onkeypress="return isNumberKey(event)" id="wb_ab_pos" style="width: 50px"></td>
+
+                    <td class="center" data-title="A-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_a_neg" onkeypress="return isNumberKey(event)" id="wb_a_neg" style="width: 50px"></td>
+
+                    <td class="center" data-title="O-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_o_neg" onkeypress="return isNumberKey(event)" id="wb_o_neg" style="width: 50px"></td>
+
+                    <td class="center" data-title="B-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_b_neg" onkeypress="return isNumberKey(event)" id="wb_b_neg" style="width: 50px"></td> 
+
+                    <td class="center" data-title="AB-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="wb_ab_neg" onkeypress="return isNumberKey(event)" id="wb_ab_neg" style="width: 50px"></td>
+                  </tr>
+
+                             <tr>
+                              <td data-title="Component">PCV</td>
+                              <td class="center" data-title="A+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_a_pos" onkeypress="return isNumberKey(event)" id="pcv_a_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="O+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_o_pos" onkeypress="return isNumberKey(event)" id="pcv_o_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="B+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_b_pos" onkeypress="return isNumberKey(event)" id="pcv_b_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="AB+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_ab_pos" onkeypress="return isNumberKey(event)" id="pcv_ab_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="A-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_a_neg" onkeypress="return isNumberKey(event)" id="pcv_a_neg" style="width: 50px"></td>
+
+                              <td class="center" data-title="O-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_o_neg" onkeypress="return isNumberKey(event)" id="pcv_o_neg" style="width: 50px"></td>
+
+                              <td class="center" data-title="B-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_b_neg" onkeypress="return isNumberKey(event)" id="pcv_b_neg" style="width: 50px"></td>
+
+                              <td class="center" data-title="AB-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="pcv_ab_neg" onkeypress="return isNumberKey(event)" id="pcv_ab_neg" style="width: 50px"></td>              
+                              
+                            </tr>
+
+
+                             <tr>
+                              <td data-title="Component">RDP</td>
+
+                              <td class="center" data-title="A+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_a_pos" onkeypress="return isNumberKey(event)" id="rdp_a_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="O+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_o_pos" onkeypress="return isNumberKey(event)" id="rdp_o_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="B+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_b_pos" onkeypress="return isNumberKey(event)" id="rdp_b_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="AB+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_ab_pos" onkeypress="return isNumberKey(event)" id="rdp_ab_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="A-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_a_neg" onkeypress="return isNumberKey(event)" id="rdp_a_neg" style="width: 50px"></td>
+
+                              <td class="center" data-title="O-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_o_neg" onkeypress="return isNumberKey(event)" id="rdp_o_neg" style="width: 50px"></td>
+
+                              <td class="center" data-title="B-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_b_neg" onkeypress="return isNumberKey(event)" id="rdp_b_neg" style="width: 50px"></td>
+
+                              <td class="center" data-title="AB-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="rdp_ab_neg" onkeypress="return isNumberKey(event)" id="rdp_ab_neg" style="width: 50px"></td>           
+                              
+                            </tr>
+
+
+                             <tr>
+                              <td data-title="Component">FFP</td>
+
+                            <td class="center" data-title="A+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_a_pos" onkeypress="return isNumberKey(event)" id="ffp_a_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="O+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_o_pos" onkeypress="return isNumberKey(event)" id="ffp_o_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="B+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_b_pos" onkeypress="return isNumberKey(event)" id="ffp_b_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="AB+ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_ab_pos" onkeypress="return isNumberKey(event)" id="ffp_ab_pos" style="width: 50px"></td>
+
+                              <td class="center" data-title="A-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_a_neg" onkeypress="return isNumberKey(event)" id="ffp_a_neg" style="width: 50px"></td>
+
+                              <td class="center" data-title="O-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_o_neg" onkeypress="return isNumberKey(event)" id="ffp_o_neg" style="width: 50px"></td>
+
+                              <td class="center" data-title="B-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_b_neg" onkeypress="return isNumberKey(event)" id="ffp_b_neg" style="width: 50px"></td>
+
+                              <td class="center" data-title="AB-ve"><input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="ffp_ab_neg" onkeypress="return isNumberKey(event)" id="ffp_ab_neg" style="width: 50px"></td>               
+                              
+                            </tr>
+                      </tbody>
+                </table>
+            </div>
+            </div>
+  <div class="col-md-12">
+                  <center>
+                      <input type="button" name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-primary"/></center>
+                    </div>   
 
 <div class="col-md-12" align="left">&nbsp;</div>
+
             
                 <!--  <div class="col-md-12" align="center">
                  <input type="button" name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-default" />
@@ -664,7 +478,7 @@ function isNumberKey(evt)
           </form> 
       </div>
   </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
             </div>
           </div>
 

@@ -121,9 +121,22 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
       <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
+        <li><a href="#"><i class="fa fa-th-list"></i> <span>Update  Stock</span>
+            <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+            </span>
+         </a>
+              <ul class="treeview-menu">
+                  <li><a href="form_one.php"><i class="fa fa-circle-o"></i> Form 1</a></li>
+                   <li><a href="form_two.php"><i class="fa fa-circle-o"></i> Form 2</a></li>
+                  <li><a href="form_three.php"><i class="fa fa-circle-o"></i> Form 3</a></li>
+                  <li><a href="form_four.php"><i class="fa fa-circle-o"></i> Form 4</a></li>
+                 <li><a href="form_five.php"><i class="fa fa-circle-o"></i> Form 5</a></li>
+              </ul>
+         </li>
         <li class="treeview"><a href="#"><i class="fa fa-th"></i> <span>Current Stock</span></a></li>
-        <li><a href="updateStock.php"><i class="fa fa-th-list"></i> <span>Update  Stock</span></a></li>
         <li><a href="historicalStock.php"><i class="fa fa-table"></i> <span>Historical Stock</span></a></li>
+        <li><a href="findDonors.php"><i class="fa fa-search"></i> <span>Find Donors</span></a></li>
         <li><a href="userProfile.php"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         <li><a href="changePassword.php"><i class="fa fa-save"></i> <span>Change Password</span></a></li>
           <li><a href="logout.php"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>    
@@ -150,21 +163,33 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
-          <?php
-             include "include/connection.php";    
-              $query = mysqli_query($con, "select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'");
-              echo "<br />Total Number of Records:".mysqli_num_rows($query);
-               $result=mysqli_fetch_assoc($query);
-               extract($result);
-              echo "<br />Date:".$date;
-              if(mysqli_num_rows($query)>0)
-                    {
-          ?>
-          <div class="box">
-            <div class="box-header">
+        <div class="box">
+        <div class="box-header">
+
+
+            <?php
+include "include/connection.php";
+$query="select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'";
+$result=mysqli_query($con,$query);
+echo "<br />Total Number of Records: ".mysqli_num_rows($result);
+          if (mysqli_num_rows($result) == 0) {
+                                    echo "<br>";
+                                    echo "Record Not Found....!!!"; 
+                                   } 
+
+          else { 
+
+            $q="select * from bb_dailystock_curr where bb_regno='".$_SESSION['bb_regno']."'";
+            $rec=mysqli_query($con,$q);
+            $rec1=mysqli_fetch_array($rec);
+            echo "<br><br><b>Date:</b> ".$rec1['date'];
+            
+
+        ?>
             <div id="no-more-tables">
                 <table class="col-md-12 table table-hover cf" id="example2">
                     <thead class="cf">
+
                         <tr>
                             <th>Component/Blood Group</th>
                             <th>A+ve</th>
@@ -178,70 +203,67 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
                         </tr>
                     </thead>
                     <tbody>
-             <!--  <?php
-                 $result=mysqli_fetch_assoc($query);
-                 extract($result);
-               ?> -->
-                            <tr>
+            <?php
+                while($row=mysqli_fetch_array($result))
+                  {
+                    ?>
+
+                           <tr>
                               <td data-title="Component">Whole Blood</td>
-                              <td class="center" data-title="A+ve"><?php echo $wb_a_pos?></td>
-                              <td class="center" data-title="O+ve"><?php echo $wb_o_pos?></td>
-                              <td class="center" data-title="B+ve"><?php echo $wb_b_pos?></td>
-                              <td class="center" data-title="AB+ve"><?php echo $wb_ab_pos?></td>
-                              <td class="center" data-title="A-ve"><?php echo $wb_a_neg?></td>
-                              <td class="center" data-title="O-ve"><?php echo $wb_o_neg?></td>
-                              <td class="center" data-title="B-ve"><?php echo $wb_b_neg?></td>             
-                              <td class="center" data-title="AB-ve"><?php echo $wb_ab_neg?></td>
+                              <td class="center" data-title="A+ve"><?php echo $row['wb_a_pos']?></td>
+                              <td class="center" data-title="O+ve"><?php echo $row['wb_o_pos']?></td>
+                              <td class="center" data-title="B+ve"><?php echo $row['wb_b_pos']?></td>
+                              <td class="center" data-title="AB+ve"><?php echo $row['wb_ab_pos']?></td>
+                              <td class="center" data-title="A-ve"><?php echo $row['wb_a_neg']?></td>
+                              <td class="center" data-title="O-ve"><?php echo $row['wb_o_neg']?></td>
+                              <td class="center" data-title="B-ve"><?php echo $row['wb_b_neg']?></td>            <td class="center" data-title="AB-ve"><?php echo $row['wb_ab_neg']?></td>
                             </tr>
-
-                             <tr>
+                            <tr>
                               <td data-title="Component">PCV</td>
-                              <td class="center" data-title="A+ve"><?php echo $pcv_a_pos?></td>
-                              <td class="center" data-title="O+ve"><?php echo $pcv_o_pos?></td>
-                              <td class="center" data-title="B+ve"><?php echo $pcv_b_pos?></td>
-                              <td class="center" data-title="AB+ve"><?php echo $pcv_ab_pos?></td>
-                              <td class="center" data-title="A-ve"><?php echo $pcv_a_neg?></td>
-                              <td class="center" data-title="O-ve"><?php echo $pcv_o_neg?></td>
-                              <td class="center" data-title="B-ve"><?php echo $pcv_b_neg?></td>               
-                              <td class="center" data-title="AB-ve"><?php echo $pcv_ab_neg?></td>              
-                              
+                              <td class="center" data-title="A+ve"><?php echo $row['pcv_a_pos']?></td>
+                              <td class="center" data-title="O+ve"><?php echo $row['pcv_o_pos']?></td>
+                              <td class="center" data-title="B+ve"><?php echo $row['pcv_b_pos']?></td>
+                              <td class="center" data-title="AB+ve"><?php echo $row['pcv_ab_pos']?></td>
+                              <td class="center" data-title="A-ve"><?php echo $row['pcv_a_neg']?></td>
+                              <td class="center" data-title="O-ve"><?php echo $row['pcv_o_neg']?></td>
+                              <td class="center" data-title="B-ve"><?php echo $row['pcv_b_neg']?></td>         
+                               <td class="center" data-title="AB-ve"><?php echo $row['pcv_ab_neg']?></td>     
                             </tr>
-
-
-                             <tr>
+                            <tr>
                               <td data-title="Component">RDP</td>
-                              <td class="center" data-title="A+ve"><?php echo $rdp_a_pos?></td>
-                              <td class="center" data-title="O+ve"><?php echo $rdp_o_pos?></td>
-                              <td class="center" data-title="B+ve"><?php echo $rdp_b_pos?></td>
-                              <td class="center" data-title="AB+ve"><?php echo $rdp_ab_pos?></td>
-                              <td class="center" data-title="A-ve"><?php echo $rdp_a_neg?></td>
-                              <td class="center" data-title="O-ve"><?php echo $rdp_o_neg?></td>
-                              <td class="center" data-title="B-ve"><?php echo $rdp_b_neg?></td>               
-                              <td class="center" data-title="AB-ve"><?php echo $rdp_ab_neg?></td>           
-                              
+                              <td class="center" data-title="A+ve"><?php echo $row['rdp_a_pos']?></td>
+                              <td class="center" data-title="O+ve"><?php echo $row['rdp_o_pos']?></td>
+                              <td class="center" data-title="B+ve"><?php echo $row['rdp_b_pos']?></td>
+                              <td class="center" data-title="AB+ve"><?php echo $row['rdp_ab_pos']?></td>
+                              <td class="center" data-title="A-ve"><?php echo $row['rdp_a_neg']?></td>
+                              <td class="center" data-title="O-ve"><?php echo $row['rdp_o_neg']?></td>
+                              <td class="center" data-title="B-ve"><?php echo $row['rdp_b_neg']?></td>           <td class="center" data-title="AB-ve"><?php echo $row['rdp_ab_neg']?></td>      
                             </tr>
-
-
-                             <tr>
+                            <tr>
                               <td data-title="Component">FFP</td>
-                            <td class="center" data-title="A+ve"><?php echo $ffp_a_pos?></td>
-                              <td class="center" data-title="O+ve"><?php echo $ffp_o_pos?></td>
-                              <td class="center" data-title="B+ve"><?php echo $ffp_b_pos?></td>
-                              <td class="center" data-title="AB+ve"><?php echo $ffp_ab_pos?></td>
-                              <td class="center" data-title="A-ve"><?php echo $ffp_a_neg?></td>
-                              <td class="center" data-title="O-ve"><?php echo $ffp_o_neg?></td>
-                              <td class="center" data-title="B-ve"><?php echo $ffp_b_neg?></td>               
-                              <td class="center" data-title="AB-ve"><?php echo $ffp_ab_neg?></td>               
-                              
+                              <td class="center" data-title="A+ve"><?php echo $row['ffp_a_pos']?></td>
+                              <td class="center" data-title="O+ve"><?php echo $row['ffp_o_pos']?></td>
+                              <td class="center" data-title="B+ve"><?php echo $row['ffp_b_pos']?></td>
+                              <td class="center" data-title="AB+ve"><?php echo $row['ffp_ab_pos']?></td>
+                              <td class="center" data-title="A-ve"><?php echo $row['ffp_a_neg']?></td>
+                              <td class="center" data-title="O-ve"><?php echo $row['ffp_o_neg']?></td>
+                              <td class="center" data-title="B-ve"><?php echo $row['ffp_b_neg']?></td>           <td class="center" data-title="AB-ve"><?php echo $row['ffp_ab_neg']?></td>    
                             </tr>
                       </tbody>
-                </table>
                   <?php
-                  }
-              ?> 
-            </div>
+                  };  
+                ?>
+            </table>
+          </div>
+      <?php
+      };
+    ?>
 
-              <!-- <h3 class="box-title">Current Stock</h3> -->
+
+
+
+          
+              
             </div>
             <!-- /.box-header -->
          </div>

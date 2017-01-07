@@ -4,6 +4,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Heroes</title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="jQuery-Validation-Engine-master/js/languages/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<script src="jQuery-Validation-Engine-master/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="jQuery-Validation-Engine-master/css/validationEngine.jquery.css" type="text/css"/>
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -34,6 +39,7 @@
             return true;
     }
 	  
+
       //-->
    </SCRIPT>
 </head>
@@ -95,18 +101,13 @@ else
 				echo"</script>";
 			
 		}
-
-
-
-
-
 }
 ?>
 
 
 <div class="container">
 <div class="row">
-<div class="col-md-6" align="center"><div class="col-md-12" align="center">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><img src="images/logo.png"  alt="logo_image"  ></div>
+<div class="col-md-6" align="center"><div class="col-md-12" align="center">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><div class="col-md-12" align="left">&nbsp;</div><img class="img-responsive heroes-logo" src="images/logo.png"  alt="logo_image"  ></div>
 
 
 
@@ -134,7 +135,7 @@ else
         <div class="col-md-12">
         	  <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <input  name="bb_regno" placeholder="Registration No." class="form-control"  type="text" id="bb_regno">
+              <input  name="bb_regno" placeholder="Registration No." class="form-control"  type="text" id="bb_regno" onkeypress="return isNumberKey(event)" required>
               <span id="status" class="h1">
     	</div>
         </div>
@@ -145,7 +146,7 @@ else
         <div class="col-md-12">
             <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input name="email_id" placeholder="E-Mail Address" class="form-control"  type="email" id="email_id">
+            <input name="email_id" placeholder="E-Mail Address" class="form-control"  type="email" id="email_id" required>
             </div>
           </div>
           
@@ -153,7 +154,7 @@ else
         <div class="col-md-12">
             <div class="input-group">
                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-              <input name="contact_no" placeholder="(845)555-1212" class="form-control" type="text" onkeypress="return isNumberKey(event)">
+              <input name="contact_no" placeholder="(845)555-1212" class="form-control" type="text" onkeypress="return isNumberKey(event)" required>
                 </div>
           </div> 
           
@@ -164,7 +165,7 @@ else
         <div class="col-md-12"> 
         	<div class="input-group">
         	<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  			<input name="password" placeholder="Password" class="form-control"  type="password">
+  			<input name="password" placeholder="Password" class="form-control"  type="password" required>
     		</div>
    	    </div>
     
