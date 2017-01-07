@@ -44,9 +44,15 @@ $query2='select * from bb_info where bb_regno="'.$_SESSION['bb_regno'].'"  ';
   
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-  
-  <style>
-    .input-group{
+  <style> 
+#divcorners {
+    border-radius: 25px;
+    padding: 20px; 
+ }
+.component-name{
+  color: white;
+}
+.input-group{
   padding-bottom:12px;
   }
 
@@ -359,7 +365,7 @@ function isNumberKey(evt)
       
              <div class="col-md-12" align="left"><p>Daily Stock</p></div>
              
-                <div class="col-md-12" style="background-color: #1B1F3A"><div class="col-md-12"><b>Whole Blood:</b></div>
+                <div class="col-md-12" style="background-color: #1B1F3A" id="divcorners"><div class="col-md-12  component-name"><b>Whole Blood:</b></div>
                <div class="col-md-12"></div>
                 <div class="tab-content">
              
@@ -431,8 +437,8 @@ function isNumberKey(evt)
              </div>
             </div></div>
  <!-- PCV Tab --><div class="col-md-12">&nbsp;</div>
-  <div class="col-md-12" style="background-color: #FF7844">
-        <div class="col-md-12"><b>PCV:</b></div>
+  <div class="col-md-12" style="background-color: #FF7844" id="divcorners">
+        <div class="col-md-12  component-name"><b>PCV:</b></div>
         <div class="col-md-12"></div>
               <div id="pcv">
                             
@@ -507,8 +513,8 @@ function isNumberKey(evt)
             </div>
           <!-- /PCV Tab -->
           <!-- RDP Tab --><div class="col-md-12">&nbsp;</div>
-        <div class="col-md-12" style="background-color: #53354A">   
-        <div class="col-md-12"><b>RDP:</b></div>
+        <div class="col-md-12" style="background-color: #53354A" id="divcorners">   
+        <div class="col-md-12 component-name"><b>RDP:</b></div>
         <div class="col-md-12"></div> 
 
            <div id="rdp">
@@ -586,8 +592,8 @@ function isNumberKey(evt)
     </div>
       <!-- /RDP Tab -->
           <!-- FFP Tab --><div class="col-md-12">&nbsp;</div> 
-        <div class="col-md-12" style="background-color: #A64942">  
-        <div class="col-md-12"><b>FFP:</b></div>
+        <div class="col-md-12" style="background-color: #A64942" id="divcorners">  
+        <div class="col-md-12 component-name"><b>FFP:</b></div>
         <div class="col-md-12"></div> 
 
     <div id="ffp" class="ffp">
